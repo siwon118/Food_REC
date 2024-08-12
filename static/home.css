@@ -1,0 +1,102 @@
+/* 메인 텍스트 스타일 */
+.main_text {
+    background-image: url('/static/images/main.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #2C5F2D;
+    text-align: left;
+    display: block; /* 텍스트 수직 정렬을 위해 flexbox를 사용 */
+    padding: 120px 10px; /* 텍스트와의 간격을 조절할 수 있도록 padding을 줄임 */   
+}
+
+
+.main_text h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.main_text p {
+    font-size: 24px;
+    margin-bottom: 40px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 메인 슬라이드 스타일 */
+.main_slide {
+    display: block;
+    text-align: center;
+    justify-content: center; /* 슬라이드를 수평 가운데로 정렬 */
+    align-items: center ; /* 슬라이드를 수직 가운데로 정렬 */
+    padding: 30px;
+}
+
+.slide {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px; /* 각 slide 사이의 간격 설정 */
+    text-align: left;
+    width: 90%;
+    display: inline-block;
+    flex-direction: column;
+    border-bottom: 2px solid olivedrab;
+}
+
+.slide img {
+    width: 500px;
+    margin-left: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 400px;
+    min-height:250px;
+    height: auto;
+    float: left;
+}
+
+.slide-content {
+    display: inline-block;
+    vertical-align: middle;
+    justify-content: center; /* 내용을 수직 가운데로 정렬 */
+    text-align: left; /* 내용을 왼쪽으로 정렬 */
+    width: 100%;
+}
+
+.slide h2 {
+    font-size: 35x;
+    margin-bottom: 10px;
+}
+
+.slide ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 18px; 
+}
+
+.slide ul li {
+    font-size: 24x;
+}
+
+.slide ul li::before {
+    content: "-";
+    margin-right: 5px;
+}
+
+.slide p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.slide button {
+    background-color: darkolivegreen;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.slide button:hover {
+    background-color: darkgreen;
+}
+
+

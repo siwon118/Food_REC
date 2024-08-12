@@ -1,0 +1,81 @@
+.submit_preference {
+    margin: 170px 20px 30px 20px;
+    background-color: white;
+    border-radius: 50px;
+    font-size:30px;
+}
+
+.submit_preference h2 {
+    font-size: 35px;
+    color: #333;
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.food-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    gap: 10px; /* 사진 사이의 간격 조정 */
+}
+
+.food-item {
+    flex: 0 0 calc(20% - 10px); /* 5개씩 배치하므로 너비 조정 */
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box; /* 패딩, 경계선을 포함하여 요소 크기 조정 */
+}
+
+.food-item label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.food-image {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto 10px; /* 이미지 하단 여백 추가 */
+}
+
+label {
+    font-size: 16px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-container button {
+    width: 45%;
+    padding: 10px;
+    background-color: darkolivegreen;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+.button-container button:hover {
+    background-color: darkgreen;
+}
+
+@media (max-width: 768px) {
+    .food-item {
+        flex: 0 0 calc(33.33% - 10px);
+    }
+}
+
+@media (max-width: 576px) {
+    .food-item {
+        flex: 0 0 calc(50% - 10px);
+    }
+}

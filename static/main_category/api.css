@@ -1,0 +1,17 @@
+/* api.css */
+
+.api_content {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.api_content h2 {
+    font-size: 50px;
+    color: black;
+}
+
+.api_content p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 20px;
+}

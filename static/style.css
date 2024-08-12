@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: ivory;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.top_menu ul li a:hover, .main_category ul li a:hover {
+    color: gray;
+}
+
+/* 상단 메뉴 스타일 */
+.top_menu {
+    background-color: #97BC62;
+    font-family: "Noto Sans KR", sans-serif;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999; /* 다른 요소 위에 표시되도록 설정 */
+}
+
+.top_menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 50px;
+}
+
+.top_menu ul li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.top_menu ul li a {
+    color: #2C5F2D;
+    font-weight:bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+/* 메인 카테고리 스타일 */
+.main_category {
+    background-color: #97BC62;
+    text-align: center;
+    position: fixed;
+    top: 40px;
+    width: 100%;
+    z-index: 9998; /* 다른 요소 위에 표시되도록 설정 */
+}
+
+.main_category ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main_category ul li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.main_category ul li:last-child {
+    margin-right: 0;
+}
+
+.main_category ul li a {
+    color: #2C5F2D;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 35px;
+    display: block; /* 링크를 블록 요소로 설정하여 가로 중앙 정렬을 가능하게 함 */
+    text-align: center; /* 텍스트를 가로 중앙 정렬 */
+    line-height: 100px; /* 텍스트 높이를 메뉴의 높이와 동일하게 설정하여 수직 중앙 정렬 */
+
+}
+
+/* 하단 정보 스타일 */
+.footer {
+    background-color: #3f3f3f;
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    margin: 0;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer_links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer_links li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer_links li:last-child {
+    margin-right: 0;
+}
+
+.footer_links li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer_links li a:hover {
+    text-decoration: underline;
+}

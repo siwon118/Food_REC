@@ -1,0 +1,61 @@
+.login-container {
+    width: 800px;
+    margin: 475px auto; /* 중앙 정렬을 위한 여백 설정 */
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: calc(100% - 30px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button[type="submit"] {
+    width: 99%;
+    padding: 10px;
+    background-color: darkolivegreen;
+    font-size:20px;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: darkgreen;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+p a {
+    color: black;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}

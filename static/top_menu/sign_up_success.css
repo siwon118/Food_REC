@@ -1,0 +1,46 @@
+.sign_up_success {
+    text-align: center;
+    margin: 170px auto 30px;
+    background-color: white;
+}
+
+.sign_up_success {
+    width: 800px;
+    margin: 475px auto; /* 중앙 정렬을 위한 여백 설정 */
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sign_up_success h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.sign_up_success .username {
+    font-weight: bold;
+    color: green;
+    font-size: 40px;
+}
+
+.sign_up_success .button-container {
+    margin-top: 20px;
+}
+
+.sign_up_success button {
+    width: 45%;
+    margin: 5px;
+    padding: 10px;
+    background-color: darkolivegreen;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sign_up_success button:hover {
+    background-color: darkgreen;
+}

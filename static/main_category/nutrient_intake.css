@@ -1,0 +1,100 @@
+/* 영양소 섭취량 확인 내용 스타일 */
+
+.nutrient_intake_content {
+    max-width: 1000px;
+    margin: 170px auto 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nutrient_intake_content h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    font-size: 35px;
+}
+
+.intake_menu_content h2 {
+    font-size: 35px;
+    color: black;
+}
+.nutrient_intake_content p {
+  text-align: center;
+  font-size: 24px;
+  color: #555;
+  margin-top: 20px;
+}
+.nutrition-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* 요소 사이의 간격을 조절합니다. 필요에 따라 조정하세요. */
+  }
+  
+  .nutrition-item label {
+    flex: 0 0 190px; /* 레이블 너비를 고정값으로 설정합니다. */
+  }
+  
+  .nutrition-item input[type="number"] {
+    flex: 1; /* 입력 필드가 남은 공간을 모두 채우도록 설정합니다. */
+    padding: 8px;
+    border: 1px solid #333;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+
+  .nutrient_intake_content li {
+    font-size: 20px; 
+    color: #333; 
+    list-style: none; 
+    text-align: center;
+
+  }
+  
+  .nutrient_intake_content li a {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .nutrient_intake_content li a:hover {
+    text-decoration: underline;
+  }
+  
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="number"] {
+    width: 50px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #329632;
+  border-radius: 5px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+
+.high-progress {
+    background-color: #024b02;
+}
+

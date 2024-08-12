@@ -1,0 +1,153 @@
+/* nutrition_facts.css */
+
+.nutrition_facts_content {
+    max-width: 1500px;
+    margin: 170px auto 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* nutrition_facts.css */
+
+.upload-section {
+    padding-left: -10px;
+    float: left;
+    width: 60%;
+}
+
+.nutrition-info {
+    float: right;
+    width: 38%;
+}
+
+/* Clearing float */
+.nutrition_facts_content::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.nutrition_facts_content h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    font-size: 35px;
+}
+
+.nutrition_facts_content p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.nutrition_facts_content li {
+    font-size: 20px;
+    color: #333;
+    list-style: none;
+}
+
+.nutrition_facts_content li a {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nutrition_facts_content li a:hover {
+    text-decoration: underline;
+}
+
+.button2 {
+    margin-left:50px;
+}
+
+.button2 button {
+    margin-left: 30px; /* 왼쪽 여백을 10px로 설정 */
+}
+
+.p {
+    margin-left: 0px 30px 0px 30px;
+}
+
+.p p {
+    margin-left:80px;
+}
+
+.upload-section img {
+    width: 500px; /* 이미지의 너비를 400px로 설정 */
+    height: auto; /* 높이는 자동으로 설정하여 비율 유지 */
+    transform: rotate(-90deg); /* 이미지를 90도 회전 */
+}
+
+.p img {
+    display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬할 수 있도록 함 */
+    margin: 0 auto; /* 좌우 여백을 자동으로 설정하여 이미지를 가운데 정렬 */
+}
+
+/* 버튼 스타일 */
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* 파일 업로드 버튼 스타일 */
+#upload-button {
+    margin-top: 10px;
+}
+
+/* 결과 표시 영역 스타일 */
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.nutrition-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content-section {
+    flex: 1;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.content-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px; /* 각 항목 사이의 간격 조정 */
+}
+
+.item-detail {
+    flex: 2; /* 적당한 비율로 조정 */
+    display: flex;
+    justify-content: space-between; /* 좌우 정렬 */
+}
+
+.item-name {
+    flex: 1;
+    text-align: left; /* 왼쪽 정렬 */
+}
+
+.item-value {
+    flex: 1;
+    margin-left: auto; 
+    text-align: right; /* 왼쪽 정렬 */
+}
+
+.item-percent {
+    flex: 1;
+    text-align: right; /* 오른쪽 정렬 */
+}
