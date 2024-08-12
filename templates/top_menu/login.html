@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로그인</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='top_menu/login.css') }}">
+</head>
+<body>
+  {% if log == True %}
+    <script>
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+    </script>
+  {%endif%}
+<!-- 상단 메뉴 -->
+<div class="top_menu">
+  <ul>
+    <li><a href="/">홈</a></li>
+    {% if login == True %}
+    <li><a href="{{ url_for('my_info') }}">{{username}}님</a></li>
+    {%else %}
+    <li><a href="{{ url_for('login') }}">로그인</a></li>
+    {%endif%}
+  </ul>
+</div>
+  <!-- 메인 카테고리 -->
+<div class="main_category">
+  <ul>
+    <li><a href="{{ url_for('menu_recommendations') }}">음식 메뉴 추천</a></li>
+    <li><a href="{{ url_for('intake_menu') }}">섭취 식단 표시</a></li>
+    <li><a href="{{ url_for('nutrient_intake') }}">영양소 섭취량 확인</a></li>
+    <li><a href="{{ url_for('nutrition_facts') }}">OCR 식단 입력</a></li>
+  </ul>
+</div>
+
+<div class="login-container">
+    <h2>로그인</h2>
+    <!-- get 수정 -->
+    <form action="login_check" method="get">        
+        <div class="input-group">
+            <label for="username">아이디:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="login">로그인</button>
+    </form>
+    <p>
+        <a href="#">아이디 찾기</a>
+        <span> | </span>
+        <a href="#">비밀번호 찾기</a>
+        <span> | </span>
+        <a href="{{ url_for('sign_up') }}">회원가입</a>
+    </p>
+</div>
+
+<!-- 하단 정보 -->
+<footer class="footer">
+    <div class="container">
+      <p>음식 추천 플랫폼 &copy; 2024. All Rights Reserved.</p>
+      <ul class="footer_links">
+        <li><a href="#">이용약관</a></li>
+        <li><a href="#">개인정보 처리방침</a></li>
+        <li><a href="#">문의하기</a></li>
+      </ul>
+    </div>
+  </footer>
+  
+
+</body>
+</html>

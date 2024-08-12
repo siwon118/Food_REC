@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>음식 추천 플랫폼</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
+</head>
+
+<body>
+
+  <!-- 상단 메뉴 -->
+  <!-- 수정 if문 추가 -->
+  <div class="top_menu">
+    <ul>
+      <li><a href="/">홈</a></li>
+      {% if login == True %}
+      <li><a href="{{ url_for('my_info') }}">{{username}}님</a></li>
+      {%else %}
+      <li><a href="{{ url_for('login') }}">로그인</a></li>
+      {%endif%}
+    </ul>
+  </div>
+
+    <!-- 메인 카테고리 -->
+  <div class="main_category">
+    <ul>
+      <li><a href="{{ url_for('menu_recommendations') }}">음식 메뉴 추천</a></li>
+      <li><a href="{{ url_for('intake_menu') }}">섭취 식단 표시</a></li>
+      <li><a href="{{ url_for('nutrient_intake') }}">영양소 섭취량 확인</a></li>
+      <li><a href="{{ url_for('nutrition_facts') }}">OCR 식단 입력</a></li>
+    </ul>
+  </div>
+
+  <!-- 메인 텍스트 -->
+  <div class="main_text">
+    <h1>음식 추천 플랫폼</h1>
+    <p>- 사용자는 음식 추천 기능뿐만 아니라 일일 단위 영양소 섭취량 확인, 식품표시사항 분석 기능을 제공함</p>
+  </div>
+
+  <div class="main_slide">
+    <!-- 첫 번째 슬라이드 -->
+    <div class="slide">
+      <div class="slide-content">
+        <img src="{{ url_for('static', filename='images/menu_recommendations2.jpg') }}" alt="음식 메뉴 추천">
+        <div>
+          <h2>음식 메뉴 추천</h2>
+          <ul>
+            <li>데이터 마이닝 기법을 통해 선호도에 따른 음식 메뉴를 추천받는다.</li>
+            <li>추천된 음식 메뉴에 알레르기 증상을 유발할 우려가 있는 재료가 같이 표기되어 섭취에 주의할 수 있다.</li>
+          </ul>
+          <button onclick="window.location.href='{{ url_for('menu_recommendations') }}'">시작하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 두 번째 슬라이드 -->
+    <div class="slide">
+      <div class="slide-content">
+        <img src="{{ url_for('static', filename='images/intake_menu.jpg') }}" alt="음식 메뉴 추천">
+        <div>
+          <h2>섭취 식단 표시</h2>
+          <ul>
+            <li>섭취한 식단 정보를 입력한다.</li>
+            <li>입력된 정보는 회원 관리 데이터베이스에 저장되어 일자별로 언제든지 확인할 수 있다.</li>
+          </ul>
+          <button onclick="window.location.href='{{ url_for('intake_menu') }}'">시작하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 세 번째 슬라이드 -->
+    <div class="slide">
+      <div class="slide-content">
+        <img src="{{ url_for('static', filename='images/nutrition_facts.jpg') }}" alt="음식 메뉴 추천">
+        <div>
+          <h2>영양소 섭취량 확인</h2>
+          <ul>
+            <li>입력된 식단 정보를 통해 해당 일자의 영양소 섭취량을 확인할 수 있다.</li>
+            <li>영양소 섭취량은 식단 정보와 같이 저장되어 일자별로 언제든지 확인할 수 있다.</li>
+          </ul>
+          <button onclick="window.location.href='{{ url_for('nutrition_facts') }}'">시작하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 네 번째 슬라이드 -->
+    <div class="slide">
+      <div class="slide-content">
+        <img src="{{ url_for('static', filename='images/Menu_Recommend.jpg') }}" alt="음식 메뉴 추천">
+        <div>
+          <h2>OCR 식단 입력</h2>
+          <ul>
+            <li>식품표시사항을 촬영해 업로드하면 인공지능 텍스트 분석(네이버 CLOVER OCR)을 통해 텍스트 형태로 변환하고 분석해 알레르기 증상을 일으킬 수 있는 재료가 있는지 확인할 수 있다.
+            </li>
+            <li>해당 식품 섭취 여부를 선택할 수 있다. 섭취 선택 시, 식단 정보와 영양소 섭취량에 자동으로 반영된다.</li>
+          </ul>
+          <button onclick="window.location.href='{{ url_for('nutrition_facts') }}'">시작하기</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+    <!-- 하단 정보 -->
+    <footer class="footer">
+      <div class="container">
+        <p>음식 추천 플랫폼 &copy; 2024. All Rights Reserved.</p>
+        <ul class="footer_links">
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보 처리방침</a></li>
+          <li><a href="#">문의하기</a></li>
+        </ul>
+      </div>
+    </footer>
+
+</body>
+
+</html>

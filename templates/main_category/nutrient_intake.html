@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영양소 섭취량 확인</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main_category/nutrient_intake.css') }}">
+  <script src="{{ url_for('static', filename='main_category/nutrient_intake.js') }}"></script>
+</head>
+
+<body>
+
+  <!-- 상단 메뉴 -->
+  <div class="top_menu">
+    <ul>
+      <li><a href="/">홈</a></li>
+      {% if login == True %}
+      <li><a href="{{ url_for('my_info') }}">{{username}}님</a></li>
+      {%else %}
+      <li><a href="{{ url_for('login') }}">로그인</a></li>
+      {%endif%}
+    </ul>
+  </div>
+    <!-- 메인 카테고리 -->
+  <div class="main_category">
+    <ul>
+      <li><a href="{{ url_for('menu_recommendations') }}">음식 메뉴 추천</a></li>
+      <li><a href="{{ url_for('intake_menu') }}">섭취 식단 표시</a></li>
+      <li><a href="{{ url_for('nutrient_intake') }}">영양소 섭취량 확인</a></li>
+      <li><a href="{{ url_for('nutrition_facts') }}">OCR 식단 입력</a></li>
+    </ul>
+  </div>
+
+<!-- 영양소 섭취량 확인 내용 -->
+<div class="nutrient_intake_content">
+  <h2>영양소 섭취량 확인</h2>
+  {% if login == True %}
+      {% if nutrient_list %}
+          <div class="nutrition-item">
+              <label for="energy">열량(칼로리) {{ nutrient_list[0] }} (kcal)</label>
+              <input type="number" id="energy" min="0" max="100" value="{{ nutrient_list[0] }}">
+              <div class="progress-bar">
+                  <div class="progress" id="energy-progress"></div>
+              </div>
+          </div>
+          <div class="nutrition-item">
+              <label for="na">나트륨 {{ nutrient_list[1] }} (mg)</label>
+              <input type="number" id="na" min="0" max="100" value="{{ nutrient_list[1] }}">
+              <div class="progress-bar">
+                  <div class="progress" id="na-progress"></div>
+              </div>
+          </div>
+          <div class="nutrition-item">
+              <label for="cbh">탄수화물 {{ nutrient_list[2] }} (g)</label>
+              <input type="number" id="cbh" min="0" max="100" value="{{ nutrient_list[2] }}">
+              <div class="progress-bar">
+                  <div class="progress" id="cbh-progress"></div>
+              </div>
+          </div>
+          <div class="nutrition-item">
+              <label for="sugar">당류 {{ nutrient_list[3] }} (g)</label>
+              <input type="number" id="sugar" min="0" max="100" value="{{ nutrient_list[3] }}">
+              <div class="progress-bar">
+                  <div class="progress" id="sugar-progress"></div>
+              </div>
+          </div>
+          <div class="nutrition-item">
+              <label for="fat">지방 {{ nutrient_list[4] }} (g)</label>
+              <input type="number" id="fat" min="0" max="100" value="{{ nutrient_list[4] }}">
+              <div class="progress-bar">
+                  <div class="progress" id="fat-progress"></div>
+              </div>
+          </div>
+          <div class="nutrition-item">
+              <label for="transfat">트랜스 지방 {{ nutrient_list[5] }} (g)</label>
+              <input type="number" id="transfat" min="0" max="100" value="{{ nutrient_list[5] }}">
+              <div class="progress-bar">
+                  <div class="progress" id="transfat-progress"></div>
+              </div>
+          </div>
+          <div class="nutrition-item">
+              <label for="saturatedfat">포화 지방 {{ nutrient_list[6] }} (g)</label>
+              <input type="number" id="saturatedfat" min="0" max="100" value="{{ nutrient_list[6] }}">
+              <div class="progress-bar">
+                  <div class="progress" id="saturatedfat-progress"></div>
+              </div>
+          </div>
+          <div class="nutrition-item">
+              <label for="kol">콜레스테롤 {{ nutrient_list[7] }} (mg)</label>
+              <input type="number" id="kol" min="0" max="100" value="{{ nutrient_list[7] }}">
+              <div class="progress-bar">
+                  <div class="progress" id="kol-progress"></div>
+              </div>
+          </div>
+          <div class="nutrition-item">
+              <label for="prot">단백질 {{ nutrient_list[8] }} (g)</label>
+              <input type="number" id="prot" min="0" max="100" value="{{ nutrient_list[8] }}">
+              <div class="progress-bar">
+                  <div class="progress" id="prot-progress"></div>
+              </div>
+          </div>
+      {% else %}
+          <p>섭취한 식단이 없습니다.</p>
+      {% endif %}
+  {% else %}
+      <li>회원 정보가 없습니다. <a href="{{ url_for('login') }}">로그인</a></li>
+  {% endif %}
+</div>
+
+
+  <!-- 하단 정보 -->
+  <footer class="footer">
+    <div class="container">
+      <p>음식 추천 플랫폼 &copy; 2024. All Rights Reserved.</p>
+      <ul class="footer_links">
+        <li><a href="#">이용약관</a></li>
+        <li><a href="#">개인정보 처리방침</a></li>
+        <li><a href="#">문의하기</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+
+</html>

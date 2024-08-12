@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알레르기 선호도 조사</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='top_menu/submit_preference.css') }}">
+    <script src="{{ url_for('static', filename='top_menu/submit_preference.js') }}"></script>
+</head>
+
+<body>
+
+    <!-- 상단 메뉴 -->
+    <div class="top_menu">
+        <ul>
+          <li><a href="/">홈</a></li>
+          {% if login == True %}
+          <li><a href="{{ url_for('my_info') }}">{{username}}님</a></li>
+          {%else %}
+          <li><a href="{{ url_for('login') }}">로그인</a></li>
+          {%endif%}
+        </ul>
+    </div>
+        <!-- 메인 카테고리 -->
+    <div class="main_category">
+        <ul>
+            <li><a href="{{ url_for('menu_recommendations') }}">음식 메뉴 추천</a></li>
+            <li><a href="{{ url_for('intake_menu') }}">섭취 식단 표시</a></li>
+            <li><a href="{{ url_for('nutrient_intake') }}">영양소 섭취량 확인</a></li>
+            <li><a href="{{ url_for('nutrition_facts') }}">OCR 식단 입력</a></li>
+        </ul>
+    </div>
+
+    <!-- 선호도 조사 체크박스 -->
+    <div class="submit_preference">
+        <h1>선호도 조사</h1>
+        <h2>알레르기 조사</h2>
+        <hr>
+        <form action="submit_preference_done" method="get">
+            <div class="food-container">
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/egg.jpg') }}" alt="계란" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="계란"> 계란</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/milk2.jpg') }}" alt="우유" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="우유"> 우유</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/gluten.jpg') }}" alt="밀" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="밀"> 밀</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/crab.jpg') }}" alt="갑각류" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="갑각류"> 갑각류</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/mackerel.jpg') }}" alt="생선" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="생선"> 생선</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/nuts.jpg') }}" alt="호두" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="호두"> 호두</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/pork.jpg') }}" alt="돼지고기" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="돼지고기"> 돼지고기</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/peanuts.jpg') }}" alt="땅콩" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="땅콩"> 땅콩</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/shellfish.jpg') }}" alt="조개" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="조개"> 조개</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/peach.jpg') }}" alt="복숭아" class="food-image">
+                    <label><input type="checkbox" name="allergy[]" value="복숭아"> 복숭아</label>
+                </div>
+            </div>
+
+            <h2>선호재료 조사</h2>
+            <hr>
+            <!-- 곡물 -->
+            <h3>곡물</h3>
+            <div class="food-container">
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/rice.jpg') }}" alt="쌀" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="쌀"> 쌀</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/corn.jpg') }}" alt="옥수수" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="옥수수"> 옥수수</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/chickpea.jpg') }}" alt="완두" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="완두"> 완두</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/soybean.jpg') }}" alt="콩" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="콩"> 콩</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/tofu.jpg') }}" alt="두부" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="두부"> 두부</label>
+                </div>
+            </div><br>
+
+            <!-- 과일 -->
+            <h3>과일</h3>
+            <div class="food-container">
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/strawberry.jpg') }}" alt="딸기" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="딸기"> 딸기</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/pear.jpg') }}" alt="배" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="배"> 배</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/apple.jpg') }}" alt="사과" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="사과"> 사과</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/watermelon.jpg') }}" alt="수박" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="수박"> 수박</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/grape.jpg') }}" alt="포도" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="포도"> 포도</label>
+                </div>
+            </div> <br>
+
+            <!-- 채소 -->
+            <h3>채소</h3>
+            <div class="food-container">
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/potato.jpg') }}" alt="감자" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="감자"> 감자</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/sweet_potato.jpg') }}" alt="고구마" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="고구마"> 고구마</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/carrot.jpg') }}" alt="당근" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="당근"> 당근</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/green_onion.jpg') }}" alt="대파" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="대파"> 대파</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/radish.jpg') }}" alt="무" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="무"> 무</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/garlic.jpg') }}" alt="생마늘" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="생마늘"> 생마늘</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/bean_sprouts.jpg') }}" alt="숙주나물"
+                        class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="숙주나물"> 숙주나물</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/spinach.jpg') }}" alt="시금치" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="시금치"> 시금치</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/shepherd\'s_purse.jpg') }}" alt="시래기"
+                        class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="시래기"> 시래기</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/cabbage.jpg') }}" alt="양배추" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="양배추"> 양배추</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/onion.jpg') }}" alt="양파" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="양파"> 양파</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/leek.jpg') }}" alt="쪽파" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="쪽파"> 쪽파</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/soybean_sprouts.jpg') }}" alt="콩나물"
+                        class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="콩나물"> 콩나물</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/shiitake_mushroom.jpg') }}" alt="표고버섯"
+                        class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="표고버섯"> 표고버섯</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/pumkin.jpg') }}" alt="호박" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="호박"> 호박</label>
+                </div>
+            </div> <br>
+
+            <!-- 육류 -->
+            <h3>육류</h3>
+            <div class="food-container">
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/fried_egg.jpg') }}" alt="달걀프라이" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="달걀프라이"> 달걀프라이</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/chicken.jpg') }}" alt="닭고기" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="닭고기"> 닭고기</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/pork.jpg') }}" alt="돼지고기" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="돼지고기"> 돼지고기</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/sausage.jpg') }}" alt="소시지" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="소시지"> 소시지</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/beef.jpg') }}" alt="쇠고기" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="쇠고기"> 쇠고기</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/lamb.jpg') }}" alt="양고기" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="양고기"> 양고기</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/duck.jpg') }}" alt="오리고기" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="오리고기"> 오리고기</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/ham.jpg') }}" alt="햄" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="햄"> 햄</label>
+                </div>
+            </div> <br>
+
+            <!-- 유제품 -->
+            <h3>유제품</h3>
+            <div class="food-container">
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/butter.jpg') }}" alt="버터" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="버터"> 버터</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/cream.jpg') }}" alt="생크림" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="생크림"> 생크림</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/yogurt.jpg') }}" alt="요구르트" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="요구르트"> 요구르트</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/milk2.jpg') }}" alt="우유" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="우유"> 우유</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/cheese.jpg') }}" alt="치즈" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="치즈"> 치즈</label>
+                </div>
+            </div> <br>
+
+            <!-- 수산물 -->
+            <h3>수산물</h3>
+            <div class="food-container">
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/cutlassfish.jpg') }}" alt="갈치" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="갈치"> 갈치</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/crab.jpg') }}" alt="게" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="게"> 게</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/mackerel.jpg') }}" alt="고등어" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="고등어"> 고등어</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/flounder.jpg') }}" alt="광어" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="광어"> 광어</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/oyster.jpg') }}" alt="굴" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="굴"> 굴</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/seaweed.jpg') }}" alt="김" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="김"> 김</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/saury.jpg') }}" alt="꽁치" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="꽁치"> 꽁치</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/octopus.jpg') }}" alt="낙지" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="낙지"> 낙지</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/squid.jpg') }}" alt="문어" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="문어"> 문어</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/seaweed_wakame.jpg') }}" alt="미역"
+                        class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="미역"> 미역</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/shrimp.jpg') }}" alt="새우" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="새우"> 새우</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/shellfish2.jpg') }}" alt="소라" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="소라"> 소라</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/anglerfish.jpg') }}" alt="아귀" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="아귀"> 아귀</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/squid2.jpg') }}" alt="오징어" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="오징어"> 오징어</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/mussel.jpg') }}" alt="홍합" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="홍합"> 홍합</label>
+                </div>
+            </div> <br>
+
+            <!-- 조미료 -->
+            <h3>조미료</h3>
+            <div class="food-container">
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/soy_sauce.jpg') }}" alt="간장" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="간장"> 간장</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/gochujang.jpg') }}" alt="고추장" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="고추장"> 고추장</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/honey.jpg') }}" alt="꿀" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="꿀"> 꿀</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/soybean_paste.jpg') }}" alt="된장" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="된장"> 된장</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/anchovy_broth.jpg') }}" alt="멸치육수"
+                        class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="멸치육수"> 멸치육수</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/sesame_oil.jpg') }}" alt="참기름" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="참기름"> 참기름</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/curry_powder.jpg') }}" alt="카레가루"
+                        class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="카레가루"> 카레가루</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/soybean_oil.jpg') }}" alt="콩기름" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="콩기름"> 콩기름</label>
+                </div>
+                <div class="food-item" onclick="toggleCheckbox(this)">
+                    <img src="{{ url_for('static', filename='images/black_pepper.jpg') }}" alt="후추" class="food-image">
+                    <label><input type="checkbox" name="preferences[]" value="후추"> 후추</label>
+                </div>
+            </div> <br>
+
+            <div class="button-container">
+                <button type="button" onclick="history.back();">뒤로가기</button>
+                <!-- 완료버튼으로 수정 -->
+                <button type="submit" class="button">완료</button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- 하단 정보 -->
+    <footer class="footer">
+        <div class="container">
+            <p>음식 추천 플랫폼 &copy; 2024. All Rights Reserved.</p>
+            <ul class="footer_links">
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">개인정보 처리방침</a></li>
+                <li><a href="#">문의하기</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+
+</html>

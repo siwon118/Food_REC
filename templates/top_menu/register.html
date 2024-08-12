@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원 가입</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='top_menu/register.css') }}">
+</head>
+<body>
+
+<!-- 상단 메뉴 -->
+<div class="top_menu">
+    <ul>
+      <li><a href="/">홈</a></li>
+      {% if login == True %}
+      <li><a href="{{ url_for('my_info') }}">{{username}}님</a></li>
+      {%else %}
+      <li><a href="{{ url_for('login') }}">로그인</a></li>
+      {%endif%}
+    </ul>
+</div>
+    <!-- 메인 카테고리 -->
+<div class="main_category">
+    <ul>
+        <li><a href="{{ url_for('menu_recommendations') }}">음식 메뉴 추천</a></li>
+        <li><a href="{{ url_for('intake_menu') }}">섭취 식단 표시</a></li>
+        <li><a href="{{ url_for('nutrient_intake') }}">영양소 섭취량 확인</a></li>
+        <li><a href="{{ url_for('nutrition_facts') }}">OCR 식단 입력</a></li>
+    </ul>
+</div>
+
+<!-- 회원 가입 폼 --> 
+<!--<br><br><br><br>-->
+<div class="register-container">
+    <h2>회원 가입</h2>
+    <form action="#" method="post">
+        <div class="input-group">
+            <label for="username">사용자 이름:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-group">
+            <label for="confirm_password">비밀번호 확인:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+        <button type="submit">가입하기</button>
+        
+    </form>
+</div>
+
+<!-- 하단 정보 -->
+<footer class="footer">
+    <div class="container">
+        <p>음식 추천 플랫폼 &copy; 2024. All Rights Reserved.</p>
+        <ul class="footer_links">
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보 처리방침</a></li>
+            <li><a href="#">문의하기</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>

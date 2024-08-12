@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원 가입</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='top_menu/my_info.css') }}">
+<script src="{{ url_for('static', filename='top_menu/my_info.js') }}"></script>
+
+</head>
+<body>
+
+<!-- 상단 메뉴 -->
+<div class="top_menu">
+  <ul>
+    <li><a href="/">홈</a></li>
+    {% if login == True %}
+    <li><a href="{{ url_for('my_info') }}">{{username}}님</a></li>
+    {%else %}
+    <li><a href="{{ url_for('login') }}">로그인</a></li>
+    {%endif%}
+  </ul>
+</div>
+  <!-- 메인 카테고리 -->
+<div class="main_category">
+  <ul>
+    <li><a href="{{ url_for('menu_recommendations') }}">음식 메뉴 추천</a></li>
+    <li><a href="{{ url_for('intake_menu') }}">섭취 식단 표시</a></li>
+    <li><a href="{{ url_for('nutrient_intake') }}">영양소 섭취량 확인</a></li>
+    <li><a href="{{ url_for('nutrition_facts') }}">OCR 식단 입력</a></li>
+  </ul>
+</div>
+
+<!-- 수정 폼 -->
+<div class="my_info_content">
+  <h2>내 정보</h2>
+  <h3>{{ name }}님 정보</h3>
+  <div class="info">
+    <p><strong>아이디:</strong> {{ id }}</p>
+    <p><strong>비밀번호:</strong> {{ pswd }}</p>  
+    <p><strong>생년월일:</strong> {{ birth }}</p>
+    <p><strong>성별:</strong> {{ gender }}</p>
+  </div>
+  <h3>알레르기 및 선호 재료 정보 <button onclick="editPreferences()">입력</button></h3>
+  <a href="{{ url_for('logout') }}">로그아웃</a>
+</div>
+
+
+<!-- 하단 정보 -->
+<footer class="footer">
+    <div class="container">
+        <p>음식 추천 플랫폼 &copy; 2024. All Rights Reserved.</p>
+        <ul class="footer_links">
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보 처리방침</a></li>
+            <li><a href="#">문의하기</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>식품표시사항 분석</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main_category/nutrition_facts.css') }}">
+  <script src="{{ url_for('static', filename='main_category/nutrient_facts.js') }}"></script>
+</head>
+
+<body>
+
+  <!-- 상단 메뉴 -->
+  <div class="top_menu">
+    <ul>
+      <li><a href="/">홈</a></li>
+      {% if login == True %}
+      <li><a href="{{ url_for('my_info') }}">{{username}}님</a></li>
+      {%else %}
+      <li><a href="{{ url_for('login') }}">로그인</a></li>
+      {%endif%}
+    </ul>
+  </div>
+  <!-- 메인 카테고리 -->
+  <div class="main_category">
+    <ul>
+      <li><a href="{{ url_for('menu_recommendations') }}">음식 메뉴 추천</a></li>
+      <li><a href="{{ url_for('intake_menu') }}">섭취 식단 표시</a></li>
+      <li><a href="{{ url_for('nutrient_intake') }}">영양소 섭취량 확인</a></li>
+      <li><a href="{{ url_for('nutrition_facts') }}">OCR 식단 입력</a></li>
+    </ul>
+  </div>
+
+  <!-- 식품표시사항 분석 -->
+  <div class="nutrition_facts_content">
+    <h2>식품표시사항 분석</h2>
+    <div class="upload-section">
+      <div class="button2">
+        <button id="upload-button">사진 업로드</button>
+    
+        <form id="upload-form" method="POST" enctype="multipart/form-data" action="{{ url_for('upload_done') }}" style="display: none;">
+            <input type="file" name="file" id="file-input" required/>
+            <input type="submit"/>
+        </form> 
+      </div>
+      {% if energy %}
+      <div class="p">
+        <img src="{{ url_for('static', filename=file_path.split('static/')[1]) }}" alt="Uploaded Image" class="test-img">  
+      </div>
+      <form method="get" action="{{ url_for('save_food_db') }}">
+        <button type="submit">섭취 식단에 추가</button>
+      </form>
+      {% else %}
+      <p id="upload-instruction">분석하고 싶은 사진을 업로드하세요.</p>
+      {% endif %}
+    </div>
+    <script>
+      document.getElementById('upload-button').addEventListener('click', function() {
+          document.getElementById('file-input').click();
+      });
+  
+      document.getElementById('file-input').addEventListener('change', function() {
+          document.getElementById('upload-form').submit();
+      });
+  </script>
+
+    <div class="nutrition-info">
+      <button id="analyze-button">OCR 분석하기</button>
+      <div class="info-section">
+        <h3 class="info-title">영양정보</h3>
+        <p class="info-description"></p>
+        <hr class="info-divider">
+      </div>
+      {% if energy %}
+      <div class="content-section">
+        <div class="content-item">
+            <div class="item-detail">
+                <p class="item-name">열량(칼로리) (kcal)</p>
+                <p class="item-value">{{ energy }}kcal</p>
+            </div>
+        </div>
+        <div class="content-item">
+            <div class="item-detail">
+                <p class="item-name">나트륨 (mg)</p>
+                <p class="item-value">{{ na }}mg</p>
+            </div>
+        </div>
+        <div class="content-item">
+            <div class="item-detail">
+                <p class="item-name">탄수화물 (g)</p>
+                <p class="item-value">{{ cbh }}g</p>
+            </div>
+        </div>
+        <div class="content-item">
+            <div class="item-detail">
+                <p class="item-name">당류 (g)</p>
+                <p class="item-value">{{ sugar }}g</p>
+            </div>
+        </div>
+        <div class="content-item">
+            <div class="item-detail">
+                <p class="item-name">지방 (g)</p>
+                <p class="item-value">{{ fat }}g</p>
+            </div>
+        </div>
+        <div class="content-item">
+            <div class="item-detail">
+                <p class="item-name">트랜스 지방 (g)</p>
+                <p class="item-value">{{ transfat }}g</p>
+            </div>
+        </div>
+        <div class="content-item">
+            <div class="item-detail">
+                <p class="item-name">포화 지방 (g)</p>
+                <p class="item-value">{{ saturatedfat }}g</p>
+            </div>
+        </div>
+        <div class="content-item">
+            <div class="item-detail">
+                <p class="item-name">콜레스테롤 (mg)</p>
+                <p class="item-value">{{ kol }}mg</p>
+            </div>
+        </div>
+        <div class="content-item">
+            <div class="item-detail">
+                <p class="item-name">단백질 (g)</p>
+                <p class="item-value">{{ prot }}g</p>
+            </div>
+        </div>    
+          <hr class="item-divider">
+        </div>
+        <p class="allergen-info">알러지유발 물질: {{ cautions }}</p>
+      </div>
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+        $('#analyze-button').click(function() {
+            // OCR 분석 요청
+            $.ajax({
+                url: '/analyze_ocr',
+                type: 'POST',
+                success: function(data) {
+                    // 받은 데이터로 영양정보 업데이트
+                    $('#energy').text(data.energy + 'kcal');
+                    $('#na').text(data.na + 'mg');
+                    $('#cbh').text(data.cbh + 'g');
+                    $('#sugar').text(data.sugar + 'g');
+                    $('#fat').text(data.fat + 'g');
+                    $('#transfat').text(data.transfat + 'g');
+                    $('#saturatedfat').text(data.saturatedfat + 'g');
+                    $('#kol').text(data.kol + 'mg');
+                    $('#prot').text(data.prot + 'g');
+
+                    // 알레르기 정보 업데이트
+                    if (data.cautions.length > 0) {
+                        $('#allergen-info').text('알러지유발 물질: ' + data.cautions.join(', '));
+                    } else {
+                        $('#allergen-info').text('알러지유발 물질: 없음');
+                    }
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+</script>
+
+  <!-- <p id="upload-instruction">분석하고 싶은 사진을 업로드하세요.</p> -->
+
+
+  <!-- 하단 정보 -->
+  <footer class="footer">
+    <div class="container">
+      <p>음식 추천 플랫폼 &copy; 2024. All Rights Reserved.</p>
+      <ul class="footer_links">
+        <li><a href="#">이용약관</a></li>
+        <li><a href="#">개인정보 처리방침</a></li>
+        <li><a href="#">문의하기</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+
+</html>

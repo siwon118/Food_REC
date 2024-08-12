@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>음식 메뉴 추천</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main_category/menu_recommendations.css') }}">
+</head>
+<body>
+
+<!-- 상단 메뉴 -->
+<div class="top_menu">
+  <ul>
+    <li><a href="/">홈</a></li>
+    {% if login == True %}
+    <li><a href="{{ url_for('my_info') }}">{{username}}님</a></li>
+    {%else %}
+    <li><a href="{{ url_for('login') }}">로그인</a></li>
+    {%endif%}
+  </ul>
+</div>
+  <!-- 메인 카테고리 -->
+<div class="main_category">
+  <ul>
+    <li><a href="{{ url_for('menu_recommendations') }}">음식 메뉴 추천</a></li>
+    <li><a href="{{ url_for('intake_menu') }}">섭취 식단 표시</a></li>
+    <li><a href="{{ url_for('nutrient_intake') }}">영양소 섭취량 확인</a></li>
+    <li><a href="{{ url_for('nutrition_facts') }}">OCR 식단 입력</a></li>
+  </ul>
+</div>
+
+<!-- 음식 메뉴 추천 내용 -->
+<div class="menu_recommendation">
+  <h2>음식 메뉴 추천</h2>
+  <div class="food-blocks">
+    {% if login == True %}
+      {% if preference_food %}
+        {% for food in preference_food %}
+          <div class="food-block">
+            <img src="{{ url_for('static', filename='images/' + food + '.jpg') }}" alt="{{ food.fd_name }}" class="food-image">
+            <p>{{ food }} <button class="add-food-btn" data-food="{{ food }}" class="food-item">식단 추가</button></p>
+          </div>
+        {% endfor %}
+        <p><button id="resetButton">식단 초기화</button></p>
+      {% else %}
+        <p>선호하는 음식이 없습니다.</p>
+      {% endif %}
+    {% else %}
+      <li>회원 정보가 없습니다. <a href="{{ url_for('login') }}">로그인</a></li>
+    {% endif %}
+  </div>
+
+</div>
+
+
+<script>
+  // JavaScript를 사용하여 버튼을 클릭할 때 add_food_list 함수 호출
+  document.querySelectorAll('.add-food-btn').forEach(function(button) {
+      button.addEventListener('click', function() {
+          var foodName = this.getAttribute('data-food');
+          // add_food_list 함수 호출
+          // var currentDate = new Date().toISOString().split('T')[0];  // 현재 날짜
+          window.location.href = "{{ url_for('add_food_list', food_name='')}}" + foodName;
+      });
+  });
+  document.getElementById('resetButton').addEventListener('click', function() {
+    window.location.href = "{{ url_for('reset_food_list') }}";
+  });
+</script>
+
+<!-- 하단 정보 -->
+<footer class="footer">
+  <div class="container">
+    <p>음식 추천 플랫폼 &copy; 2024. All Rights Reserved.</p>
+    <ul class="footer_links">
+      <li><a href="#">이용약관</a></li>
+      <li><a href="#">개인정보 처리방침</a></li>
+      <li><a href="#">문의하기</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
